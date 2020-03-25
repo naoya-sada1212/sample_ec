@@ -10,5 +10,6 @@
   <p>{{ $product->imgpath }}</p>
   <a href="/detail/{{ $product->id }}">商品詳細</a>
   @endforeach
+  {{ $products->links() }}
 
 @endsection

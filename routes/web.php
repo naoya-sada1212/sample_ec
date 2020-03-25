@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'ProductsController@index');
 
-Route::get('/detail/{id}', 'ProductsController@detail');
+Route::get('/detail/{id}', 'ProductsController@viewDetail');
+
+Route::get('/cart', 'ProductsController@viewCart')->middleware('auth');
+Route::post('/cart', 'ProductsController@cartIn')->middleware('auth');
 
 Auth::routes();
 
