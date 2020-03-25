@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
+@section('content')
   <title>商品詳細</title>
 </head>
 <body>
@@ -11,9 +8,9 @@
   <p>{{ $products->product_detail }}</p>
   <p>{{ $products->price }}</p>円
   <p>{{ $products->imgpath }}</p>
+  <a href="/">商品一覧に戻る</a>
   <form method="post" action="/cart">
    <input type="hidden" name="product_id" value="{{ $products->id }}">
    <input type="submit" value="カートに入れる">  
   </form>
-</body>
-</html>
+  @endsection
