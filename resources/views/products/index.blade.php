@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.products')
 <title>商品一覧</title>
 @section('content')
 
@@ -6,7 +6,7 @@
   @foreach ($products as $product)
   <h3>{{ $product->product_name }}</h3>
   <p>{{ $product->product_detail }}</p>
-  <p>{{ $product->price }}</p>円
+  <p>{{ $product->price }}円</p>
   <p>{{ $product->imgpath }}</p>
   <a href="/detail/{{ $product->id }}">商品詳細</a>
   @endforeach

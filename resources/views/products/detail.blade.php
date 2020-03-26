@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.products')
 @section('content')
   <title>商品詳細</title>
 </head>
@@ -6,7 +6,7 @@
   <h1>商品詳細</h1>
   <h3>{{ $products->product_name }}</h3>
   <p>{{ $products->product_detail }}</p>
-  <p>{{ $products->price }}</p>円
+  <p>{{ $products->price }}円</p>
   <p>{{ $products->imgpath }}</p>
   <a href="/">商品一覧に戻る</a>
   <br>

@@ -21,13 +21,17 @@ class ProductsController extends Controller
         $products = Product::find($id);
 
         return view('products.detail', compact('products'));
+
     }
 
     public function viewCart()
     {
-        $carts = Cart::all();
+        $user_id = Auth::id();
+        $carts = Cart::where('user_id',$user_id)->get();
+        $sum = Cart::with('product')->get('price');
+        
 
-        return view('products.cart', compact('carts'));
+        return view('products.cart', compact('carts','sum'));
     }
     public function cartIn(Request $request)
     {
@@ -43,6 +47,17 @@ class ProductsController extends Controller
             $message = 'カートに登録済みです';
         }
         $carts = Cart::where('user_id', $user_id)->get();
+        
+
         return view('products.cart',compact('carts','message'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $product_id = $request->products_id;
+        $user_id = Auth::id();
+        Cart::where('product_id',$product_id)->where('user_id',$user_id)->delete();
+        
+        return redirect('/cart');
     }
 }
