@@ -29,10 +29,12 @@
 </div>
 @endforeach 
 </div>
-個数：{{$count}}個<br>
+合計：{{$count}}個<br>
 <p>合計金額：{{number_format($sum)}}円</p>
 <br>
 <form method="post" action="/check">
+{{ csrf_field() }}
+<input type="hidden" name="product_id" value="$cart-product->id">
 <input type="submit" value="購入する">
 </form>
 <a href="/">商品一覧へ</a>

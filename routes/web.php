@@ -22,6 +22,8 @@ Route::post('/cart', 'ProductsController@cartIn')->middleware('auth');
 
 Route::delete('/cartdelete', 'ProductsController@delete');
 
+Route::post('/check', 'ProductsController@checkOut');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

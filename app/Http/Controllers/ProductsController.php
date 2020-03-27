@@ -27,7 +27,6 @@ class ProductsController extends Controller
     public function viewCart(Cart $cart)
     {
         $data = $cart->showCart();
-        //$sum = Cart::with('product')->get('price');
         return view('products.cart', $data);
     }
     public function cartIn(Request $request,Cart $cart)
@@ -61,5 +60,11 @@ class ProductsController extends Controller
         $data = $cart->showCart();
         
         return view('products.cart', $data);
+    }
+
+    public function checkOut(Request $request, Cart $cart)
+    {
+        $data = $cart->showCart();
+        return view('products.checkout',$data);
     }
 }
