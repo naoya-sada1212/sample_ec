@@ -23,9 +23,9 @@
 <body>
   @component('components.header')
   @endcomponent
-  <main class="py-4">
-     @yield('content')
-  </main>
+  <div class="container">
+    @yield('content')
+  </div>
   @component('components.footer')
   @endcomponent
 </body>

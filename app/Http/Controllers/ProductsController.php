@@ -41,7 +41,7 @@ class ProductsController extends Controller
         }
         else
         {
-            $message = '既にカートに入っています';
+            $message = 'すでにカートに入っています';
         }
         $data = $cart->showCart();
         

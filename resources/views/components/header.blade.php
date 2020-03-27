@@ -46,12 +46,9 @@
                                   </a>
                                 </div>
                             </li>
-                            <a href="{{ url('/cart') }}">
-                          <img src="{{ asset('image/cart.png') }}" class="cart" style="width:20px; height:20px; margin-top:5px;">
-                          </a>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
+</div>
