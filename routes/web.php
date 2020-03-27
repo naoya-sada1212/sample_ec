@@ -20,7 +20,7 @@ Route::get('/detail/{id}', 'ProductsController@viewDetail');
 Route::get('/cart', 'ProductsController@viewCart')->middleware('auth');
 Route::post('/cart', 'ProductsController@cartIn')->middleware('auth');
 
-Route::delete('/cartdelete', 'ProductsController@destroy');
+Route::delete('/cartdelete', 'ProductsController@delete');
 
 Auth::routes();
 

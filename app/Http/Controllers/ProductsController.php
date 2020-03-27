@@ -24,40 +24,42 @@ class ProductsController extends Controller
 
     }
 
-    public function viewCart()
+    public function viewCart(Cart $cart)
     {
-        $user_id = Auth::id();
-        $carts = Cart::where('user_id',$user_id)->get();
-        $sum = Cart::with('product')->get('price');
-        
-
-        return view('products.cart', compact('carts','sum'));
+        $data = $cart->showCart();
+        //$sum = Cart::with('product')->get('price');
+        return view('products.cart', $data);
     }
-    public function cartIn(Request $request)
+    public function cartIn(Request $request,Cart $cart)
     {
         $product_id = $request->product_id;
         $user_id = Auth::id();
-        
-        $cart_in_info = Cart::firstOrCreate(['product_id' => $product_id, 'user_id' => $user_id]);
-        if($cart_in_info->wasRecentlyCreated){
+        $cart_in = Cart::firstOrCreate(['user_id'=>$user_id,'product_id'=>$product_id]);
+        if($cart_in->wasRecentlyCreated)
+        {
             $message = 'カートに追加しました';
         }
         else
         {
-            $message = 'カートに登録済みです';
+            $message = '既にカートに入っています';
         }
-        $carts = Cart::where('user_id', $user_id)->get();
+        $data = $cart->showCart();
         
-
-        return view('products.cart',compact('carts','message'));
+        return view('products.cart',$data)->with('message',$message);
     }
 
-    public function destroy(Request $request)
+    public function delete(Request $request,Cart $cart)
     {
-        $product_id = $request->products_id;
+        $product_id = $request->product_id;
         $user_id = Auth::id();
-        Cart::where('product_id',$product_id)->where('user_id',$user_id)->delete();
+        $delete = Cart::where('user_id',$user_id)->where('product_id',$product_id)->delete();
+        if($delete < 0)
+        {
+            $mes = '商品を一つ削除しました';
+        }
+
+        $data = $cart->showCart();
         
-        return redirect('/cart');
+        return view('products.cart', $data);
     }
 }

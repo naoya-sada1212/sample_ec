@@ -10,7 +10,6 @@
   <p>{{ $products->imgpath }}</p>
   <a href="/">商品一覧に戻る</a>
   <br>
-  <a href="/cart">カート</a>
   <form method="post" action="/cart">
   {{ csrf_field() }}
    <input type="hidden" name="product_id" value="{{ $products->id }}">

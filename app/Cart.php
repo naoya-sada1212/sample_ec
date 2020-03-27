@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Model
 {
@@ -14,6 +15,20 @@ class Cart extends Model
     public function product()
     {
         return $this->belongsTo('\App\Product');
+    }
+
+    public function showCart()
+    {
+        $user_id = Auth::id();
+        $data['carts'] = $this->where('user_id',$user_id)->get();
+        $data['count'] = 0;
+        $data['sum'] = 0;
+
+        foreach($data['carts'] as $carts) {
+            $data['count']++;
+            $data['sum'] += $carts->product->price;
+        }
+        return $data;
     }
     
 }
