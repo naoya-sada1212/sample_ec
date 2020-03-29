@@ -30,5 +30,14 @@ class Cart extends Model
         }
         return $data;
     }
+
+    public function checkCart()
+    {
+        $user_id = Auth::id();
+        $check_cart = $this->where('user_id',$user_id)->get();
+        $this->where('user_id',$user_id)->delete();
+
+        return $check_cart;
+    }
     
 }
